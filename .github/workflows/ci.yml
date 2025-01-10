@@ -1,6 +1,6 @@
 name: Java SideProj CI/CD
 
-# 在推送到 main 分支時觸發
+# 在推送到 develop 分支時觸發
 on:
   push:
     branches:
