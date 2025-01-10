@@ -17,6 +17,6 @@ public class HelloWorldServiceTest {
         String result = helloWorldService.sayHello();
 
         // Assert
-        assert(result.equals("Hello World Testing Error!"));
+        assert(result.equals("Hello World Testing!"));
     }
 }
