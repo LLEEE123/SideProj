@@ -42,11 +42,12 @@ jobs:
         run: |
           docker-compose -f docker-compose.yml up -d
           docker ps
+          docker-compose logs redis
 
       # 等待 Redis 完全啟動
       - name: Wait for Redis to be ready
         run: |
-          for i in {1..10}; do
+          for i in {1..20}; do
             nc -zv redis 6379 && echo "Redis is ready!" && exit 0
             echo "Waiting for Redis..."
             sleep 30
@@ -54,8 +55,8 @@ jobs:
           echo "Redis did not start in time." && exit 1
 
       # 配置 Redis 密碼為環境變數
-      - name: Set Redis Password Environment Variable
-        run: echo "SPRING_REDIS_PASSWORD=123456" >> $GITHUB_ENV
+#      - name: Set Redis Password Environment Variable
+#        run: echo "SPRING_REDIS_PASSWORD=123456" >> $GITHUB_ENV
 
       # 執行測試
       - name: Run tests
