@@ -26,6 +26,13 @@ jobs:
           java-version: '23'  # 使用 Java 23 版本
           distribution: 'temurin'  # 使用 Eclipse Temurin 作為 JDK 發行版
 
+      # 安裝 docker-compose
+      - name: Install Docker Compose
+        run: |
+          sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+          sudo chmod +x /usr/local/bin/docker-compose
+          docker-compose --version
+
       # 啟動 Redis 容器
       - name: Start Redis with Docker Compose
         run: |
