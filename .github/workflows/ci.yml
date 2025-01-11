@@ -8,6 +8,7 @@ on:
   pull_request:
     branches:
       - develop
+
 # 定義工作流程中的作業
 jobs:
   build:
@@ -25,6 +26,31 @@ jobs:
           java-version: '23'  # 使用 Java 23 版本
           distribution: 'temurin'  # 使用 Eclipse Temurin 作為 JDK 發行版
 
+      # 啟動 Redis 容器
+      - name: Start Redis with Docker Compose
+        run: |
+          docker-compose -f docker-compose.yml up -d
+          docker ps
+
+      # 等待 Redis 完全啟動
+      - name: Wait for Redis to be ready
+        run: |
+          for i in {1..10}; do
+            nc -zv localhost 6379 && echo "Redis is ready!" && exit 0
+            echo "Waiting for Redis..."
+            sleep 5
+          done
+          echo "Redis did not start in time." && exit 1
+
+      # 配置 Redis 密碼為環境變數
+      - name: Set Redis Password Environment Variable
+        run: echo "SPRING_REDIS_PASSWORD=123456" >> $GITHUB_ENV
+
       # 構建和測試專案
       - name: Build with Maven
         run: mvn clean install
+
+      # 停止並移除 Redis 容器
+      - name: Tear down Docker Compose
+        if: always()
+        run: docker-compose -f docker-compose.yml down
