@@ -9,7 +9,10 @@ public class JedisIntegrationTest {
 
     @Test
     void shouldStoreAndRetrieveValueFromRedis() {
-        try (Jedis jedis = new Jedis("localhost", 6379)) { // 修改為你的 Redis 伺服器地址與端口
+        try (
+                Jedis jedis = new Jedis("redis", 6379)
+//                Jedis jedis = new Jedis("localhost", 6379)
+        ) { // 修改為你的 Redis 伺服器地址與端口
             // 如果需要密碼驗證，請提供密碼
             jedis.auth("123456");
 
