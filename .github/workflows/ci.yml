@@ -29,7 +29,7 @@ jobs:
       # 啟動 Redis 容器
       - name: Start Redis with Docker Compose
         run: |
-          docker-compose -f docker-compose.yml up -d redis
+          docker-compose -f docker-compose.yml up -d
           docker ps
 
       # 等待 Redis 完全啟動
