@@ -18,7 +18,8 @@ services:
     ports:
       - "6379:6379"
     environment:
-      REDIS_PASSWORD: 123456 # 設置密碼
+      REDIS_PASSWORD: 123456
+    command: [ "redis-server", "--requirepass", "123456" ] # 添加這一行來啟用密碼
     volumes:
       - redis-data:/data
 
