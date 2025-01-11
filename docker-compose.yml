@@ -12,6 +12,8 @@ services:
       SPRING_REDIS_HOST: redis
       SPRING_REDIS_PORT: 6379
       SPRING_REDIS_PASSWORD: 123456 # 如果有設置密碼，請改為正確密碼
+    networks:
+      - app-network
 
   redis:
     image: redis:latest
@@ -22,6 +24,11 @@ services:
     command: [ "redis-server", "--requirepass", "123456" ] # 添加這一行來啟用密碼
     volumes:
       - redis-data:/data
+    networks:
+      - app-network
 
 volumes:
   redis-data:
+
+networks:
+  app-network:
