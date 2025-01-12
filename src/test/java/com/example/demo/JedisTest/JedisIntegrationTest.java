@@ -25,11 +25,11 @@ public class JedisIntegrationTest {
             String key = "test";
             assertEquals("test", key);
 //            // Act
-//            jedis.set("testKey", "testValue");
-//            String result = jedis.get("testKey");
-//
-//            // Assert
-//            assertEquals("testValue", result);
+            jedis.set("testKey", "testValue");
+            String result = jedis.get("testKey");
+
+            // Assert
+            assertEquals("testValue", result);
         } catch (Exception e) {
             throw new RuntimeException("Redis connection or operation failed", e);
         }
