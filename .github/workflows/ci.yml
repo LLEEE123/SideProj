@@ -37,12 +37,19 @@ jobs:
       - name: Build with Maven
         run: mvn clean install
 
-      # 啟動 Redis 容器
-      - name: Start Redis with Docker Compose
+#      # 啟動 Redis 容器
+#      - name: Start Redis with Docker Compose
+#        run: |
+#          docker-compose -f docker-compose.yml up -d
+#          docker ps
+#          docker-compose logs redis
+
+      # 啟動 Docker Compose 並檢查更新
+      - name: Deploy services with Docker Compose
         run: |
-          docker-compose -f docker-compose.yml up -d
-          docker ps
-          docker-compose logs redis
+          docker-compose pull
+          docker-compose up -d
+          
 
 #      # 等待 Redis 完全啟動
       - name: Wait for Redis to be ready
