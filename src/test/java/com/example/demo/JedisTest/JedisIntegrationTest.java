@@ -19,17 +19,17 @@ public class JedisIntegrationTest {
         )
         { // 修改為你的 Redis 伺服器地址與端口
             // 如果需要密碼驗證，請提供密碼
-            jedis.auth("123456");
+//            jedis.auth("123456");
 
 
             String key = "test";
             assertEquals("test", key);
 //            // Act
-//            jedis.set("testKey", "testValue");
-//            String result = jedis.get("testKey");
+            jedis.set("testKey", "testValue");
+            String result = jedis.get("testKey");
 //
 //            // Assert
-//            assertEquals("testValue", result);
+            assertEquals("testValue", result);
         } catch (Exception e) {
             throw new RuntimeException("Redis connection or operation failed", e);
         }
