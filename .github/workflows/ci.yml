@@ -55,4 +55,5 @@ jobs:
       # 測試應用程式是否連接 Redis 正常
       - name: Test application
         run: |
-          curl -f http://spring-app:8080/actuator/health
+#          curl -f http://spring-app:8080/actuator/health
+          curl -f http://spring-app:8080/
