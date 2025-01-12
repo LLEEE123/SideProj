@@ -47,10 +47,10 @@ jobs:
       # 等待 Redis 完全啟動
       - name: Wait for Redis to be ready
         run: |
-          for i in {1..20}; do
+          for i in {1..5}; do
             nc -zv redis 6379 && echo "Redis is ready!" && exit 0
             echo "Waiting for Redis..."
-            sleep 30
+            sleep 10
           done
           echo "Redis did not start in time." && exit 1
 
