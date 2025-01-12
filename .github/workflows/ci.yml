@@ -39,20 +39,33 @@ jobs:
       - name: Build with Maven
         run: mvn clean package -DskipTests
 
-      - name: Run tests with Maven
-        run: mvn test  # 執行測試
-
-      # 建置 Docker 映像檔
+      # 建立 Docker 映像檔
       - name: Build Docker image
         run: |
           docker build -t my-spring-app .
 
+      # 創建自定義 Docker 網絡
+      - name: Create Docker network
+        run: docker network create my-network
+
       # 啟動 Spring Boot 應用程式
       - name: Run Spring Boot application
         run: |
-          docker run --network=host -d --name spring-app my-spring-app
+          docker run --network my-network -d --name spring-app my-spring-app
+
+      # 等待 Redis 健康檢查通過
+      - name: Wait for Redis to be ready
+        run: |
+          until redis-cli -h redis -p 6379 ping; do
+            echo "Waiting for Redis to be ready..."
+            sleep 5
+          done
+
+      # 執行測試
+      - name: Run tests with Maven
+        run: mvn test  # 執行測試
 
       # 測試應用程式是否連接 Redis 正常
       - name: Test application
         run: |
-          curl -f http://spring-app:8080
+          curl -f http://spring-app:8080/actuator/health
