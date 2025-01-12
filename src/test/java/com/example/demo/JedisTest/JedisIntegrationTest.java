@@ -18,7 +18,7 @@ public class JedisIntegrationTest {
 //                Jedis jedis = new Jedis("localhost", 6379)
         ) { // 修改為你的 Redis 伺服器地址與端口
             // 如果需要密碼驗證，請提供密碼
-//            jedis.auth("123456");
+            jedis.auth("123456");
 //
 //            // Act
 //            jedis.set("testKey", "testValue");
