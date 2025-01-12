@@ -51,7 +51,10 @@ jobs:
       # 啟動 Spring Boot 應用程式
       - name: Run Spring Boot application
         run: |
-          docker run --network my-network -d --name spring-app my-spring-app
+          java -jar target/*.jar
+#      - name: Run Spring Boot application
+#        run: |
+#          docker run --network my-network -d --name spring-app my-spring-app
 
       # 安裝 redis-cli 並等待 Redis 就緒
       - name: Install redis-cli and wait for Redis to be ready
