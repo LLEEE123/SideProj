@@ -53,6 +53,10 @@ jobs:
         run: |
           docker run --network my-network -d --name spring-app my-spring-app
 
+      # 檢查 Docker 容器狀態
+      - name: Check Docker containers after Spring Boot startup
+        run: docker ps  # 再次檢查是否有啟動 Spring Boot 容器
+
       # 安裝 redis-cli 並等待 Redis 就緒
       - name: Install redis-cli and wait for Redis to be ready
         run: |
@@ -63,20 +67,6 @@ jobs:
             sleep 5
           done
 
-      # 檢查 Redis 健康狀態
-      - name: Verify Redis health
-        run: |
-          for i in {1..10}; do
-            health=$(docker inspect --format='{{json .State.Health.Status}}' $(docker ps -q --filter "ancestor=redis:6.2"))
-            if [ "$health" == "\"healthy\"" ]; then
-              echo "Redis is healthy!"
-              exit 0
-            fi
-            echo "Waiting for Redis to become healthy..."
-            sleep 5
-          done
-          echo "Redis health check failed!"
-          exit 1
       # 檢查 Redis 準備OK
       - name: Wait for Redis to be ready
         run: |
