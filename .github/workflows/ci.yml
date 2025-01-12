@@ -55,8 +55,8 @@ jobs:
           echo "Redis did not start in time." && exit 1
 
       # 配置 Redis 密碼為環境變數
-      - name: Set Redis Password Environment Variable
-        run: echo "SPRING_REDIS_PASSWORD=123456" >> $GITHUB_ENV
+#      - name: Set Redis Password Environment Variable
+#        run: echo "SPRING_REDIS_PASSWORD=123456" >> $GITHUB_ENV
 
       # 執行測試
       - name: Run tests
