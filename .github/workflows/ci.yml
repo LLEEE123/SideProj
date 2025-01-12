@@ -63,6 +63,9 @@ jobs:
             sleep 5
           done
 
+      - name: Run tests with Maven
+        run: mvn test  # 執行測試
+
       # 測試應用程式是否連接 Redis 正常
       - name: Test application
         run: |
