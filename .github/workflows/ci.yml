@@ -70,8 +70,11 @@ jobs:
       # 檢查 Redis 準備OK
       - name: Wait for Redis to be ready
         run: |
-          redis_ip=$(docker inspect --format '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' redis)
           for i in {1..10}; do
+        # 獲取 Redis 容器的 IP 地址
+            redis_ip=$(docker inspect --format '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' redis)
+          
+        # 使用 redis 容器的 IP 來檢查 6379 端口是否開啟
             if nc -z $redis_ip 6379; then
               echo "Redis is ready!"
               exit 0
