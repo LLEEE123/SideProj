@@ -12,8 +12,7 @@ public class JedisIntegrationTest {
         String redisIp = System.getenv("REDIS_IP");
         try
                 (
-//                Jedis jedis = new Jedis("redis", 6379) == null ?
-//                        new Jedis("localhost", 6379) : new Jedis("redis", 6379)
+//
                         Jedis jedis = new Jedis(redisIp, 6379)
 //                Jedis jedis = new Jedis("redis", 6379)
 //                Jedis jedis = new Jedis("localhost", 6379)
