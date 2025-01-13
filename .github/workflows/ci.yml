@@ -55,8 +55,8 @@ jobs:
           docker build -t my-spring-app .
 
       # 創建自定義 Docker 網絡
-      - name: Create Docker network
-        run: docker network create my-network
+#      - name: Create Docker network
+#        run: docker network create my-network
 
       # 啟動 Spring Boot 應用程式
       - name: Run Spring Boot application
