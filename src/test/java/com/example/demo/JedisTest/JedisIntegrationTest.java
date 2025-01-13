@@ -9,12 +9,13 @@ public class JedisIntegrationTest {
 
     @Test
     void shouldStoreAndRetrieveValueFromRedis() {
-
+        String redisIp = System.getenv("REDIS_IP");
         try
                 (
 //                Jedis jedis = new Jedis("redis", 6379) == null ?
 //                        new Jedis("localhost", 6379) : new Jedis("redis", 6379)
-                Jedis jedis = new Jedis("redis", 6379)
+                        Jedis jedis = new Jedis(redisIp, 6379)
+//                Jedis jedis = new Jedis("redis", 6379)
 //                Jedis jedis = new Jedis("localhost", 6379)
         )
         { // 修改為你的 Redis 伺服器地址與端口
@@ -31,6 +32,7 @@ public class JedisIntegrationTest {
 //            // Assert
             assertEquals("testValue", result);
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             throw new RuntimeException("Redis connection or operation failed", e);
         }
     }

@@ -90,6 +90,12 @@ jobs:
           echo "Redis did not become ready in time!"
           exit 1
 
+      #Get Redis container IP
+      - name: Get Redis container IP
+        run: |
+          redis_ip=$(docker inspect --format '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -q --filter "ancestor=redis:6.2"))
+          echo "REDIS_IP=$redis_ip" >> $GITHUB_ENV
+
       # 執行Maven測試
       - name: Run tests with Maven
         run: mvn test
