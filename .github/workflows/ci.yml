@@ -1,4 +1,14 @@
 name: CI for Spring Boot and Redis
+#註記：在調用服務時，例如要從java webapp調用redis，可能會出現“redis: Temporary failure in name resolution”的錯誤。
+#必須直接調用ip，請見下方 #Get Redis container IP
+#  直接調用ip --> redis_ip=$(docker.......
+#在SpringBoot application.properties中則是要寫 "spring.data.redis.host=${REDIS_IP}"
+
+#抑或是要測試redis能不能ping到，請見下方 “檢查 Redis 準備OK” 中要打ip也是要取redis_ip=$(docker inspect --format
+#後執行nc -z $redis_ip 6379
+
+#在最後java webapp測試，請見下方 "測試應用程式是否連接正常"，設定curl -f http://spring-app:8080 則是出現“Could not resolve host: spring-app Error: Process completed with exit code 6.”的錯誤。
+#調用spring_app_ip=$(docker inspect --format，並改為curl -f http://$SPRING_APP_IP:8080 才能執行
 
 on:
   push:
@@ -103,15 +113,14 @@ jobs:
           SPRING_REDIS_HOST: redis
           SPRING_REDIS_PORT: 6379
 
-      # 測試應用程式是否連接 Redis 正常(1/2)
+      # 測試應用程式是否連接正常(1/2)
       - name: Get Spring application container IP
         run: |
           spring_app_ip=$(docker inspect --format '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' spring-app)
           echo "SPRING_APP_IP=$spring_app_ip" >> $GITHUB_ENV
 
-      # 測試應用程式是否連接 Redis 正常(2/2)
+      # 測試應用程式是否連接正常(2/2)
       - name: Test application
         run: |
           curl -f http://$SPRING_APP_IP:8080
-#          curl -f http://spring-app:8080
-#          curl -f http://spring-app:8080/actuator/health
+          
