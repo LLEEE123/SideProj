@@ -122,5 +122,5 @@ jobs:
       # 測試應用程式是否連接正常(2/2)
       - name: Test application
         run: |
-          curl -f https://$SPRING_APP_IP:8080
+          curl -f http://$SPRING_APP_IP:8080
           
