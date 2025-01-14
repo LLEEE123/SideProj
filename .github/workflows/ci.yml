@@ -140,10 +140,11 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
+
       # 打包專案為 ZIP 文件
       - name: Package application for Elastic Beanstalk
         run: |
-          zip -r deployment-package.zip * .[^.]*
+          zip -r deployment-package.zip * .[^.]* target/*.jar
 
       # 部署到 Elastic Beanstalk
       - name: Deploy to Elastic Beanstalk
