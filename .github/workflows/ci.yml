@@ -132,12 +132,6 @@ jobs:
 
       # 以下為AWS測試
 
-      # 在 AWS 部署之前清理 Docker 容器
-      - name: Clean up Docker containers
-        run: |
-          docker ps -a -q | xargs docker stop
-          docker ps -a -q | xargs docker rm
-
       # AWS 驗證
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
