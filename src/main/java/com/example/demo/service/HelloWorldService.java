@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 public class HelloWorldService {
 
     public String sayHello() {
-        return "Hello World Testing!";
+        return "Hello World Testing for Aws!";
     }
 
 }
