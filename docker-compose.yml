@@ -1,4 +1,4 @@
-version: '3.8'
+#version: '3.8'
 services:
   app:
     build:
@@ -10,8 +10,7 @@ services:
       - redis
     environment:
       SPRING_REDIS_HOST: redis
-      SPRING_REDIS_PORT: 6379
-#      SPRING_REDIS_PASSWORD: 123456 # 如果有設置密碼，請改為正確密碼
+      SPRING_REDIS_PORT:
     networks:
       - app-network
 
@@ -20,10 +19,7 @@ services:
     ports:
       - "6379:6379"
   # 不再設置密碼
-    command: [ "redis-server" ]  # 這裡不再有 --requirepass 參數
-#    environment:
-#      REDIS_PASSWORD: 123456
-#    command: [ "redis-server", "--requirepass", "123456" ] # 添加這一行來啟用密碼
+    command: [ "redis-server" ]
     volumes:
       - redis-data:/data
     networks:
