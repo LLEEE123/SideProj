@@ -144,20 +144,15 @@ jobs:
       # 部署到 Elastic Beanstalk
       - name: Deploy to Elastic Beanstalk
         run: |
-        # 安裝 Elastic Beanstalk CLI
           sudo apt-get update
           sudo apt-get install -y python3-pip
           pip install awsebcli --upgrade --user
           
-        # 將 awsebcli 加到 PATH
           export PATH=$PATH:$HOME/.local/bin
           
-        # 初始化 Elastic Beanstalk 應用程式
           eb init -p docker ${{ secrets.APPLICATION_NAME }} --region ${{ secrets.AWS_REGION }}
           
-        # 指定環境
           eb use ${{ secrets.ELASTIC_BEANSTALK_ENV_NAME }}
           
-        # 部署應用程式
           eb deploy --staged
           
