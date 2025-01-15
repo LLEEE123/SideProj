@@ -17,6 +17,6 @@ public class HelloWorldServiceTest {
         String result = helloWorldService.sayHello();
 
         // Assert
-        assert(result.equals("Hello World Testing for local!"));
+        assert(result.equals("Hello World Testing for Aws!"));
     }
 }
