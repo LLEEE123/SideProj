@@ -16,7 +16,7 @@ public class JedisIntegrationTest {
     void shouldStoreAndRetrieveValueFromRedis() {
         String redisIp = System.getenv("REDIS_IP");
         //local測試需要
-        appEnv = "gitAws";
+        appEnv = "local";
         String redisEnv = redisIp;
         switch (appEnv) {
             case "local":
@@ -38,7 +38,7 @@ public class JedisIntegrationTest {
         }
 
         try(
-                Jedis jedis = new Jedis(redisEnv, 6379);
+                Jedis jedis = new Jedis(redisIp, 6379);
         )
         {
             String role = "admin";
