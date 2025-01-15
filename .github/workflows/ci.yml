@@ -125,9 +125,9 @@ jobs:
           echo "SPRING_APP_IP=$spring_app_ip" >> $GITHUB_ENV
 
       # 測試應用程式是否連接正常(2/2)
+      #          curl -f http://$SPRING_APP_IP:8080
       - name: Test application
         run: |
-#          curl -f http://$SPRING_APP_IP:8080
           curl --trace-ascii - http://$SPRING_APP_IP:8080
 
 
