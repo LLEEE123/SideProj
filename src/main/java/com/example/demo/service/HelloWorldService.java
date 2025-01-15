@@ -12,6 +12,10 @@ public class HelloWorldService {
 //    @Autowired
 //    RedisClient redisClient;
 
+    public String sayHelloForAws() {
+        return "Hello World for Aws! It's now 01/15 15:47";
+    }
+
     public String sayHello() {
         return "Hello World Testing for Aws!";
     }

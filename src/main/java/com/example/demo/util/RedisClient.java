@@ -50,10 +50,10 @@ public class RedisClient {
                             break;
                     }
 //                    log.info("appEnv = {}", appEnv);
-//                    jedis = new Jedis(redisEnv, 6379);
+                    jedis = new Jedis(redisEnv, 6379);
 
 //                    Aws測試用
-                    jedis = new Jedis("redis", 6379);
+//                    jedis = new Jedis("172.18.0.2", 6379);
 
 //                    jedis.auth("yourpassword"); // 如果有設定密碼，請提供密碼
                 }
