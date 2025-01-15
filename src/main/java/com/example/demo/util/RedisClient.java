@@ -29,28 +29,29 @@ public class RedisClient {
         if (jedis == null) {
             synchronized (RedisClient.class) {
                 if (jedis == null) {
-                    String redisIp = System.getenv("REDIS_IP");
-                    String redisEnv = redisIp;
-
-                    switch (appEnv) {
-                        case "local":
-                            // localhost本機測試時的配置
-                            redisEnv = "localhost";
-                            break;
-                        case "localBrowser":
-                            // localhost本機瀏覽器測試時的配置
-                            redisEnv = "redis";
-                            break;
-                        case "gitAws":
-                            // github ci測試時的配置
-                            redisEnv = redisIp;
-                            break;
-                        default:
-                            redisEnv = redisIp;
-                            break;
-                    }
+//                    String redisIp = System.getenv("REDIS_IP");
+//                    String redisEnv = redisIp;
+//
+//                    switch (appEnv) {
+//                        case "local":
+//                            // localhost本機測試時的配置
+//                            redisEnv = "localhost";
+//                            break;
+//                        case "localBrowser":
+//                            // localhost本機瀏覽器測試時的配置
+//                            redisEnv = "redis";
+//                            break;
+//                        case "gitAws":
+//                            // github ci測試時的配置
+//                            redisEnv = redisIp;
+//                            break;
+//                        default:
+//                            redisEnv = redisIp;
+//                            break;
+//                    }
 //                    log.info("appEnv = {}", appEnv);
-                    jedis = new Jedis(redisEnv, 6379);
+//                    jedis = new Jedis(redisEnv, 6379);
+                    jedis = new Jedis("172.18.0.2", 6379);
 //                    jedis.auth("yourpassword"); // 如果有設定密碼，請提供密碼
                 }
             }
