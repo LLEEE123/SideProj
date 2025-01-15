@@ -13,7 +13,7 @@ public class HelloWorldService {
 //    RedisClient redisClient;
 
     public String sayHello() {
-        return "Hello World Testing for local!";
+        return "Hello World Testing for Aws!";
     }
 
     public String sayHelloJedis() {
