@@ -1,3 +1,4 @@
+#For Github Actions - Aws or local
 FROM maven:3.8.1-openjdk-17-slim AS builder
 WORKDIR /app
 COPY . .
@@ -9,6 +10,7 @@ COPY --from=builder /app/target/*.jar app.jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
 
+#Forlocal only
 ## 使用官方的 OpenJDK 基底映像
 #FROM openjdk:17-jdk-slim
 #
