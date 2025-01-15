@@ -15,6 +15,7 @@ public class HelloWorldService {
     public String sayHello() {
         return "Hello World Testing for local!";
     }
+
     public String sayHelloJedis() {
 //        return "Hello World 123";
         return "Hello World Testing, success time --> " + someMethod() +"!";
