@@ -16,7 +16,7 @@ public class JedisIntegrationTest {
     void shouldStoreAndRetrieveValueFromRedis() {
         String redisIp = System.getenv("REDIS_IP");
         //local測試需要
-//        appEnv = "local";
+        appEnv = "gitAws";
         String redisEnv = redisIp;
         switch (appEnv) {
             case "local":
