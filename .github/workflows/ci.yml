@@ -128,7 +128,7 @@ jobs:
       #          curl -f http://$SPRING_APP_IP:8080
       - name: Test application
         run: |
-          curl --trace-ascii - http://$SPRING_APP_IP:8080
+          curl -f --trace-ascii - http://$SPRING_APP_IP:8080
 
 
       # 以下為AWS測試
