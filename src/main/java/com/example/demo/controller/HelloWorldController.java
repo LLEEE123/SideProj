@@ -15,7 +15,8 @@ public class HelloWorldController {
     @ResponseBody
     @GetMapping("/")
     public String index() {
-        return helloWorldService.sayHello();
+//        System.out.println("Calling helloWorldService");
+        return helloWorldService.sayHelloJedis();
     }
 
 }
