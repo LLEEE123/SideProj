@@ -16,8 +16,8 @@ public class HelloWorldController {
     @GetMapping("/")
     public String index() {
 //        System.out.println("Calling helloWorldService");
-//        return helloWorldService.sayHelloJedis();
-        return helloWorldService.sayHello();
+        return helloWorldService.sayHelloJedis();
+//        return helloWorldService.sayHello();
     }
 
 }
