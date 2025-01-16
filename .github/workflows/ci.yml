@@ -119,16 +119,16 @@ jobs:
           SPRING_REDIS_PORT: 6379
 
       # 測試應用程式是否連接正常(1/2)
-#      - name: Get Spring application container IP
-#        run: |
-#          spring_app_ip=$(docker inspect --format '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' spring-app)
-#          echo "SPRING_APP_IP=$spring_app_ip" >> $GITHUB_ENV
+      - name: Get Spring application container IP
+        run: |
+          spring_app_ip=$(docker inspect --format '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' spring-app)
+          echo "SPRING_APP_IP=$spring_app_ip" >> $GITHUB_ENV
 
       # 測試應用程式是否連接正常(2/2)
       #          curl -f http://$SPRING_APP_IP:8080
-#      - name: Test application
-#        run: |
-#          curl -f --trace-ascii - http://$SPRING_APP_IP:8080
+      - name: Test application
+        run: |
+          curl -f --trace-ascii - http://$SPRING_APP_IP:8080
 
 
       # 以下為AWS測試
