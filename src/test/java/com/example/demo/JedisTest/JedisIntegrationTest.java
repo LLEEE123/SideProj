@@ -16,23 +16,23 @@ public class JedisIntegrationTest {
     void shouldStoreAndRetrieveValueFromRedis() {
         String redisIp = System.getenv("REDIS_IP");
         //local測試需要
-        appEnv = "localBrowser";
+        appEnv = "gitCi";
         String redisEnv = redisIp;
         switch (appEnv) {
             case "local":
-                //                    localhost本機測試時的配置
+                //                    localhost本機瀏覽器測試時的配置
                 redisEnv = "localhost";
                 break;
-            case "localBrowser":
-                //                    localhost本機瀏覽器測試時的配置
+            case "localBrowserAndAws":
+                //                   Aws跑mvn test測試時的配置，基本上不會用到
                 redisEnv = "redis";
                 break;
-            case "gitAws":
-                //                    github ci測試時的配置
+            case "gitCi":
+                //                    github ci測試時的配置，上AWS會錯，但上aws不會跑mvn test，所以測是可以用這個
                 redisEnv = redisIp;
                 break;
             default:
-                //                    github ci測試時的配置
+                //
                 redisEnv = redisIp;
                 break;
         }

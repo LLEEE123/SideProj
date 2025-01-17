@@ -37,16 +37,17 @@ public class RedisClient {
                             // localhost本機測試時的配置
                             redisEnv = "localhost";
                             break;
-                        case "localBrowser":
-                            // localhost本機瀏覽器測試時的配置
+                        case "localBrowserAndAws":
+                            // localhost本機瀏覽器測試、Aws執行的配置
                             redisEnv = "redis";
                             break;
-                        case "gitAws":
+                        case "gitCi":
                             // github ci測試時的配置
+                            //但目前github ci跑完後github Actions在打webApp會打不到，詳細原因不確定為何
                             redisEnv = redisIp;
                             break;
                         default:
-                            redisEnv = redisIp;
+                            redisEnv = "redis";
                             break;
                     }
 //                    log.info("appEnv = {}", appEnv);
