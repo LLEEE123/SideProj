@@ -50,7 +50,7 @@ public class RedisClient {
                             break;
                     }
 //                    log.info("appEnv = {}", appEnv);
-                    jedis = new Jedis("redis", 6379);
+                    jedis = new Jedis(redisIp, 6379);
 
 //                    Aws測試用
 //                    jedis = new Jedis("172.18.0.2", 6379);
