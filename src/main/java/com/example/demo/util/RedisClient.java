@@ -30,7 +30,7 @@ public class RedisClient {
             synchronized (RedisClient.class) {
                 if (jedis == null) {
                     String redisIp = System.getenv("REDIS_IP");
-                    String redisEnv = redisIp;
+                    String redisEnv = "localBrowser";
 
                     switch (appEnv) {
                         case "local":
