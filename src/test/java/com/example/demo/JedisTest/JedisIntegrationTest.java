@@ -38,7 +38,7 @@ public class JedisIntegrationTest {
         }
 
         try(
-                Jedis jedis = new Jedis(redisIp, 6379);
+                Jedis jedis = new Jedis("redis", 6379);
         )
         {
             String role = "admin";
