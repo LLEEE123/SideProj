@@ -1,42 +1,32 @@
-version: '3.8'
+#version: '3.8'
 services:
   app:
     build:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8080:8080" # 對外暴露 Spring Boot 應用程式的端口
+      - "8080:8080"
     depends_on:
       - redis
     environment:
-      # 設定 Redis 的主機名稱和端口
       SPRING_REDIS_HOST: redis
-      SPRING_REDIS_PORT: 6379
+      SPRING_REDIS_PORT:
     networks:
       - app-network
-    healthcheck: # 健康檢查，確保應用程式啟動後可用
-      test: ["CMD", "curl", "-f", "http://localhost:8080"]
-      interval: 10s
-      timeout: 5s
-      retries: 3
 
   redis:
     image: redis:latest
     ports:
-      - "6379:6379" # 暴露 Redis 的端口
-    command: [ "redis-server" ] # 啟動 Redis 的命令
+      - "6379:6379"
+  # 不再設置密碼
+    command: [ "redis-server" ]
     volumes:
-      - redis-data:/data # 儲存 Redis 數據以防止數據丟失
+      - redis-data:/data
     networks:
       - app-network
-    healthcheck: # 為 Redis 添加健康檢查
-      test: ["CMD", "redis-cli", "ping"]
-      interval: 10s
-      timeout: 5s
-      retries: 3
 
 volumes:
-  redis-data: # Redis 數據的命名卷
+  redis-data:
 
 networks:
-  app-network: # 自定義網絡，確保容器之間可以互相通信
+  app-network:
