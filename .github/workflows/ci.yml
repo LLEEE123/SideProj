@@ -124,6 +124,12 @@ jobs:
           spring_app_ip=$(docker inspect --format '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' spring-app)
           echo "SPRING_APP_IP=$spring_app_ip" >> $GITHUB_ENV
 
+      #Get Redis container IP
+      - name: Get Redis container IP
+        run: |
+          redis_ip=$(docker inspect --format '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -q --filter "ancestor=redis:6.2"))
+          echo "REDIS_IP=$redis_ip" >> $GITHUB_ENV
+
       # 測試應用程式是否連接正常(2/2)
       #          curl -f http://$SPRING_APP_IP:8080
       - name: Test application
