@@ -22,7 +22,7 @@ public class HelloWorldService {
 
     public String sayHelloJedis() {
 //        return "Hello World 123";
-        return "Hello World Testing, success time --> " + someMethod() +"!";
+        return "Hello World Testing, success time --> " + someMethod() +" !!";
     }
 
     public int someMethod() {
